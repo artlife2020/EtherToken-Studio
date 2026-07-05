@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EtherToken Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(120deg,#1e2a38,#2c3e50);
+    color:#fff;
+}
+
+.container{
+    max-width:800px;
+    margin:40px auto;
+    background:#ffffff10;
+    padding:25px;
+    border-radius:12px;
+    backdrop-filter: blur(10px);
+}
+
+h1{
+    text-align:center;
+}
+
+input, button{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:none;
+    border-radius:6px;
+}
+
+button{
+    cursor:pointer;
+    background:#00b894;
+    color:white;
+}
+
+button:hover{
+    background:#019875;
+}
+
+.token{
+    margin-top:10px;
+    padding:10px;
+    background:#ffffff20;
+    border-left:4px solid #00b894;
+}
+
+.footer{
+    text-align:center;
+    margin-top:20px;
+    font-size:12px;
+    opacity:0.7;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>EtherToken Studio</h1>
+
+<p>Create and manage simple token records in a simulated Ethereum-style environment.</p>
+
+<input id="tokenName" placeholder="Token name">
+<input id="tokenValue" placeholder="Token value">
+
+<button onclick="addToken()">Create Token</button>
+<button onclick="clearTokens()">Clear All</button>
+
+<div id="list"></div>
+
+<div class="footer">
+Single-file Ethereum-inspired simulation tool.
+</div>
+
+</div>
+
+<script>
+
+// Store all tokens in memory
+const tokens = [];
+
+// Get DOM container
+const list = document.getElementById("list");
+
+// Render token list
+function renderTokens(){
+
+    list.innerHTML = "";
+
+    tokens.forEach(function(t){
+
+        const div = document.createElement("div");
+        div.className = "token";
+
+        const title = document.createElement("strong");
+        title.textContent = t.name;
+
+        const value = document.createElement("p");
+        value.textContent = "Value: " + t.value;
+
+        div.appendChild(title);
+        div.appendChild(value);
+
+        list.appendChild(div);
+
+    });
+
+}
+
+// Add a new token
+function addToken(){
+
+    const name = document.getElementById("tokenName").value.trim();
+    const value = document.getElementById("tokenValue").value.trim();
+
+    if(name === "" || value === ""){
+        alert("Please fill all fields");
+        return;
+    }
+
+    tokens.push({
+        name:name,
+        value:value
+    });
+
+    document.getElementById("tokenName").value = "";
+    document.getElementById("tokenValue").value = "";
