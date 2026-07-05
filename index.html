@@ -133,3 +133,23 @@ function addToken(){
 
     document.getElementById("tokenName").value = "";
     document.getElementById("tokenValue").value = "";
+
+    renderTokens();
+
+}
+
+// Clear all tokens
+function clearTokens(){
+
+    tokens.length = 0;
+    renderTokens();
+
+}
+
+// Initial render
+renderTokens();
+
+</script>
+
+</body>
+</html>
